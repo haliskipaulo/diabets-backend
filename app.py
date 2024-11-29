@@ -84,9 +84,9 @@ def submit():
         scaler=scaler,
         selected_columns=selected_columns
     )
-    probabilities = model.predict_proba(df).max(axis=1)  # Supondo que o modelo tenha `predict_proba`
+    probabilities = model.predict_proba(df).max(axis=1)  
 
-     # Traduzir a predição para o nome da classe usando o LabelEncoder
+    
     diabetes_prediction = target_label_encoder.inverse_transform(predictions)[0]
     probability_percentage = round(probabilities[0] * 100, 2)
 

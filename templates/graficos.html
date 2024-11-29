@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,20 +15,65 @@
         <a class="namepagina" href="/">Volta para Predição</a>
     </div>
 
-   
+
 </header>
 
 <body>
-    <a>Graficos</a>
-    <p>dados</p>
-    <p>dados</p>
-    <p>dados</p>
-    <p>dados</p>
-    
+    <section class="texto">
+        <h2>Sobre o Dataset</h2>
+        <p>
+            O dataset utilizado neste projeto contém informações diversas sobre indivíduos, incluindo fatores genéticos,
+            comportamentais e clínicos, que podem influenciar o desenvolvimento de diabetes. As variáveis incluem
+            histórico familiar, idade, índice de massa corporal (IMC), hábitos alimentares, consumo de álcool, status de
+            tabagismo, entre outras.
+            Esses dados foram  pré-processados para garantir que as informações fossem consistentes e
+            adequadas para alimentar o modelo de aprendizado de máquina.
+        </p>
+        <p>
+            Para mais detalhes sobre o dataset, você pode acessar o arquivo original através do link abaixo:
+        </p>
+        <a href="https://www.kaggle.com/datasets/ankitbatra1210/diabetes-dataset" >Link para o
+            Dataset</a>
+    </section>
 
+    <hr>
 
+    <section class="texto">
+        <h2>Importância de Cada Coluna no Modelo</h2>
+        <div class="content">
+            <div class="text">
+                <p>
+                    O gráfico abaixo mostra a importância relativa de cada coluna (variável) no modelo de predição.
+                    Variáveis com maior importância, como o índice de massa corporal (IMC) e idade, indicam maior
+                    relevância na decisão final do modelo.
+                    
+                </p>
+            </div>
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/importancia.png') }}"   width="500" >
+            </div>
+        </div>
+    </section>
 
+    <hr>
 
-
+    <section class="texto">
+        <h2>Correlação entre Variáveis</h2>
+        <div class="content">
+            <div class="image">
+                <img src="{{ url_for('static', filename='images/correlacao.png') }}"  width="500">
+            </div>
+            <div class="text">
+                <p>
+                    O gráfico ao lado apresenta a matriz de correlação entre as variáveis do dataset.
+                    Os valores variam de -1 a 1, onde valores próximos de 1 indicam uma forte correlação positiva,
+                    enquanto valores próximos de -1 indicam uma forte correlação negativa.
+                    Essa análise ajuda a identificar relações entre variáveis,             
+                    que pode ser útil para a interpretação e otimização do modelo.
+                </p>
+            </div>
+        </div>
+    </section>
 </body>
+
 </html>

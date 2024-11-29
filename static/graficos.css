@@ -27,3 +27,23 @@ body {
 .namepagina a:hover { 
     background-color: #858484b7; 
 }
+
+.texto {
+    padding: 20px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.content .text {
+    width: 45%;
+}
+
+.content .image {
+    width: 45%;
+    text-align: center;
+}
