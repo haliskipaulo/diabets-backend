@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <title>Forms - Predição ML</title>
+</head>
+
+<header>
+
+    <div class="namepagina">
+        <h1>Predição Diabetes</h1>
+        <a class="namepagina" href="/graficos">Graficos e Dados</a>
+    </div>
+
+   
+</header>
+
+<body>
+    <div class="container">
+      
+        <form id="form-perguntas" action="/submit" method="POST">           
+
+            <div class="form-group">
+                <label for="age">Idade:</label>
+                <input type="number" id="age" name="Age" placeholder="Digite sua idade" min="1" required>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="bmi">Índice de Massa Corporal (IMC):</label>
+                <input type="number" id="bmi" name="BMI" placeholder="Digite seu IMC"  min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label>Alguem da sua família já teve diabetes?</label>
+                <div class="radio-container">
+                    <input type="radio" id="family-no" name="Family History" value="No" required>
+                    <label for="family-no">Não</label>
+                </div>
+                <div class="radio-container"> 
+                    <input type="radio" id="family-yes" name="Family History" value="Yes">
+                    <label for="family-yes">Sim</label>
+                </div>
+            </div>
+
+           
+            <div class="form-group">
+                <label>Qual seu nível de prática de atividade física?</label>
+                <div class="radio-container">
+                    <input type="radio" id="activity-high" name="Physical Activity" value="High" required>
+                    <label for="activity-high">Alta</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="activity-moderate" name="Physical Activity" value="Moderate">
+                    <label for="activity-moderate">Moderada</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="activity-low" name="Physical Activity" value="Low">
+                    <label for="activity-low">Baixa</label>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Quais seus Hábitos Alimentares?</label>
+                <div class="radio-container">
+                    <input type="radio" id="diet-healthy" name="Dietary Habits" value="Healthy" required>
+                    <label for="diet-healthy">Saudáveis</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="diet-unhealthy" name="Dietary Habits" value="Unhealthy">
+                    <label for="diet-unhealthy">Pouco Saudáveis</label>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Qual sua classe socioeconômica?</label>
+                <div class="radio-container">
+                    <input type="radio" id="socio-high" name="Socioeconomic Factors" value="High" required>
+                    <label for="socio-high">Alta</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="socio-medium" name="Socioeconomic Factors" value="Medium">
+                    <label for="socio-medium">Média</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="socio-low" name="Socioeconomic Factors" value="Low">
+                    <label for="socio-low">Baixa</label>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Status de Fumante:</label>
+                <div class="radio-container">
+                    <input type="radio" id="smoker-no" name="Smoking Status" value="Non-Smoker" required>
+                    <label for="smoker-no">Não Fumante</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="smoker-yes" name="Smoking Status" value="Smoker">
+                    <label for="smoker-yes">Fumante</label>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Qual seu nivel de consumo de Álcool?</label>
+                <div class="radio-container">
+                    <input type="radio" id="alcohol-high" name="Alcohol Consumption" value="High" required>
+                    <label for="alcohol-high">Alto</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="alcohol-moderate" name="Alcohol Consumption" value="Moderate">
+                    <label for="alcohol-moderate">Moderado</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="alcohol-low" name="Alcohol Consumption" value="Low">
+                    <label for="alcohol-low">Baixo</label>
+                </div>
+            </div>
+            
+           
+            <div class="form-group">
+                <label>Usa esteroides?</label>
+                <div class="radio-container">
+                    <input type="radio" id="steroids-no" name="Steroid Use History" value="No" required>
+                    <label for="steroids-no">Não</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="steroids-yes" name="Steroid Use History" value="Yes">
+                    <label for="steroids-yes">Sim</label>
+                </div>
+            </div>
+
+            
+            <div class="form-group">
+                <label>Testes Genéticos(NÃO SEI OQ É):</label>
+                <div class="radio-container">
+                    <input type="radio" id="genetic-negative" name="Genetic Testing" value="Negative" required>
+                    <label for="genetic-negative">Negativo</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="genetic-positive" name="Genetic Testing" value="Positive">
+                    <label for="genetic-positive">Positivo</label>
+                </div>
+            </div>
+
+           
+            <div class="form-group">
+                <label>Como estão suas funções hepáticas(figado)</label>
+                <div class="radio-container">
+                    <input type="radio" id="liver-normal" name="Liver Function Tests" value="Normal" required>
+                    <label for="liver-normal">Normal</label>
+                </div>
+                <div class="radio-container">
+                    <input type="radio" id="liver-abnormal" name="Liver Function Tests" value="Abnormal">
+                    <label for="liver-abnormal">Anormal</label>
+                </div>
+            </div>
+
+            <button type="submit" >Enviar</button>
+
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
