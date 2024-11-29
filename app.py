@@ -4,8 +4,7 @@ import pandas as pd
 
 app = Flask(__name__)
 
-
-
+# lamber encoder para transformar os valores em numérico    
 label_encoders = {
     'Family History': load('./joblibs/Family_History_label_encoder.joblib'),
     'Physical Activity': load('./joblibs/Physical_Activity_label_encoder.joblib'),
@@ -17,13 +16,16 @@ label_encoders = {
     'Liver Function Tests': load('./joblibs/Liver_Function_Tests_label_encoder.joblib'),
 }
 
+# lamber encoder da resposta da predicao
 target_label_encoder = load('./joblibs/target_label_encoder.joblib')
 
+# colunas que o modelo ira utilizar
 selected_columns = ['Family History', 'Age', 'BMI', 'Physical Activity', 
                     'Dietary Habits', 'Socioeconomic Factors', 
                     'Smoking Status', 'Alcohol Consumption', 
                     'Steroid Use History', 'Liver Function Tests']
 
+# scaler para normalizar os dados
 scaler = load('./joblibs/scaler.joblib')
 
 
@@ -37,6 +39,7 @@ def graficos():
     return render_template('graficos.html')  
 
 
+# função para realizar a predicao
 def prediction(df, model_path="./joblibs/random_forest_model.joblib", label_encoders=label_encoders, scaler=scaler, selected_columns=selected_columns):
     model = load(model_path)
 
@@ -57,7 +60,7 @@ def prediction(df, model_path="./joblibs/random_forest_model.joblib", label_enco
     return predictions
 
 
-
+# rota para os dados do forms
 @app.route('/submit', methods=['POST'])
 def submit():    
     data = {
@@ -73,7 +76,7 @@ def submit():
         "Liver Function Tests": request.form.get("Liver Function Tests"),
     }
 
-    df = pd.DataFrame(data, index=[0])
+    df = pd.DataFrame(data, index=[0]) # transforma esses dados em df para o processamento
 
     # Faz a predição e pega as probabilidades
     model = load("./joblibs/random_forest_model.joblib")
@@ -86,10 +89,11 @@ def submit():
     )
     probabilities = model.predict_proba(df).max(axis=1)  
 
-    
+    # transforma o numero retornado no tipo de Diabetes que tem no dataset e formada a porcentagem
     diabetes_prediction = target_label_encoder.inverse_transform(predictions)[0]
     probability_percentage = round(probabilities[0] * 100, 2)
 
+    # mostra o resultado no html
     return render_template(
         'result.html',
         diabetes_type=diabetes_prediction,
@@ -97,6 +101,6 @@ def submit():
     )
 
 if __name__ == "__main__":
-    model = load("joblibs/random_forest_model.joblib")
-    print("Features esperadas pelo modelo:", selected_columns)
+    # model = load("joblibs/random_forest_model.joblib")
+    # print("Features esperadas pelo modelo:", selected_columns)
     app.run(debug=True)
