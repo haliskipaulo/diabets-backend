@@ -17,6 +17,8 @@ label_encoders = {
     'Liver Function Tests': load('./joblibs/Liver_Function_Tests_label_encoder.joblib'),
 }
 
+target_label_encoder = load('./joblibs/target_label_encoder.joblib')
+
 selected_columns = ['Family History', 'Age', 'BMI', 'Physical Activity', 
                     'Dietary Habits', 'Socioeconomic Factors', 
                     'Smoking Status', 'Alcohol Consumption', 
@@ -73,6 +75,8 @@ def submit():
 
     df = pd.DataFrame(data, index=[0])
 
+    # Faz a predição e pega as probabilidades
+    model = load("./joblibs/random_forest_model.joblib")
     predictions = prediction(
         df,
         model_path="./joblibs/random_forest_model.joblib",
@@ -80,8 +84,17 @@ def submit():
         scaler=scaler,
         selected_columns=selected_columns
     )
+    probabilities = model.predict_proba(df).max(axis=1)  # Supondo que o modelo tenha `predict_proba`
 
-    return jsonify({"predictions": predictions.tolist()})
+     # Traduzir a predição para o nome da classe usando o LabelEncoder
+    diabetes_prediction = target_label_encoder.inverse_transform(predictions)[0]
+    probability_percentage = round(probabilities[0] * 100, 2)
+
+    return render_template(
+        'result.html',
+        diabetes_type=diabetes_prediction,
+        probability=probability_percentage
+    )
 
 if __name__ == "__main__":
     model = load("joblibs/random_forest_model.joblib")
