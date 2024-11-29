@@ -1,8 +1,6 @@
 # Diabets Backend & Frontend
 
-# Diabets Backend & Frontend
-
-O **Diabets Backend & Frontend** é uma aplicação web integrada para análise e gerenciamento de dados relacionados à diabetes. O sistema permite que usuários façam previsões com base em modelos de machine learning previamente treinados.
+O **diabets-backend** é uma aplicação web integrada para análise e gerenciamento de dados relacionados à diabetes. O sistema permite que usuários façam previsões com base em modelos de machine learning previamente treinados.
 
 ---
 
